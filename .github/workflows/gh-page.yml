@@ -37,7 +37,7 @@ jobs:
       run: yarn
 
     - name: build for Github Pages
-      run: build-prod
+      run: yarn build-prod
 
     # Runs a single command using the runners shell
     - name: GitHub Pages deploy
