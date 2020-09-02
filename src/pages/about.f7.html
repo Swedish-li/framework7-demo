@@ -69,8 +69,6 @@
         data() {
             return {
                 sql: null,
-                results: [],
-                err: '',
                 db: null,
             }
         },
@@ -91,23 +89,30 @@
                     // exec throws an error when the SQL statement is invalid
                     err = e
                 }
-                this.updateResult(results[0], err)
+                this.updateResult(results ? results[0] : results, err)
             },
             updateSql(e) {
                 this.sql = e.target.value
                 this.$update()
             },
             updateResult(result, err) {
-                const header = result.columns
-                    .map((columnName) => `<th>${columnName}</th>`)
-                    .join('')
-                const body = result.values
-                    .map((row) => {
-                        return `<tr>${row
-                            .map((val) => `<td>${val}</td>`)
-                            .join('')}</tr>`
-                    })
-                    .join('')
+                $$('#error').html((err || '').toString())
+                let header, body
+                if (result) {
+                    header = result.columns
+                        .map((columnName) => `<th>${columnName}</th>`)
+                        .join('')
+                    body = result.values
+                        .map((row) => {
+                            return `<tr>${row
+                                .map((val) => `<td>${val}</td>`)
+                                .join('')}</tr>`
+                        })
+                        .join('')
+                } else {
+                    header = ''
+                    body = ''
+                }
                 $$('#headTr').html(header)
                 $$('#bodyTr').html(body)
             },
