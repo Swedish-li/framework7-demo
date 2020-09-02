@@ -1,0 +1,15 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "printWidth": 160,
+            "semi": false,
+            "singleQuote": true
+        },
+        "prettyhtml": {
+            "printWidth": 160
+        }
+    },
+    "vetur.format.scriptInitialIndent": true,
+    "vetur.format.styleInitialIndent": true
+}
